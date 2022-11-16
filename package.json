@@ -1,5 +1,5 @@
 {
-  "name": "react-native-marketingcloudsdk",
+  "name": "@allboatsrise/react-native-marketingcloudsdk",
   "version": "7.5.2",
   "description": "A React Native component to access the native Salesforce Marketing Cloud MobilePush SDKs",
   "author": "Salesforce Marketing Cloud",
@@ -8,9 +8,9 @@
   "types": "types/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/salesforce-marketingcloud/react-native-marketingcloudsdk.git"
+    "url": "git+https://github.com/allboatsrise/react-native-marketingcloudsdk.git"
   },
-  "homepage": "https://github.com/salesforce-marketingcloud/react-native-marketingcloudsdk",
+  "homepage": "https://github.com/allboatsrise/react-native-marketingcloudsdk",
   "keywords": [
     "react-native-component",
     "react-native",

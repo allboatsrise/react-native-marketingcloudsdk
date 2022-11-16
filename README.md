@@ -10,10 +10,10 @@ Release notes for the plugin can be found [here](CHANGELOG.md)
 
 * Plugin has a version dependency on React Native v0.60+
 
-#### 1. Add plugin to your application via [npm](https://www.npmjs.com/package/react-native-marketingcloudsdk)
+#### 1. Add plugin to your application via [npm](https://www.npmjs.com/package/@allboatsrise/react-native-marketingcloudsdk)
 
 ```shell
-npm install react-native-marketingcloudsdk --save
+npm install @allboatsrise/react-native-marketingcloudsdk --save
 ```
 
 ### Android Setup

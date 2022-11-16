@@ -19,7 +19,7 @@ import {
   Platform
 } from "react-native";
 
-import MCReactModule from "react-native-marketingcloudsdk";
+import MCReactModule from "@allboatsrise/react-native-marketingcloudsdk";
 
 class RegistrationComponent extends Component {
     constructor(props) {
