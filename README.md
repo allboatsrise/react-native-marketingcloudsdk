@@ -90,10 +90,6 @@ pod install
 #### 2. Configure the SDK in your AppDelegate.m class
 
 ```objc
-// Add this import at the top (before #if RCT_NEW_ARCH_ENABLED)
-#import <MarketingCloudSDK/MarketingCloudSDK.h>
-// Other imports ...
-
 - (BOOL)application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
@@ -125,6 +121,8 @@ Follow [these instructions](./ios_push.md) to enable push for iOS.
     * [.enablePush()](#MCReactModule.enablePush)
     * [.disablePush()](#MCReactModule.disablePush)
     * [.getSystemToken()](#MCReactModule.getSystemToken) ⇒ <code>Promise.&lt;?string&gt;</code>
+    * [.setSystemToken(systemToken)](#MCReactModule.setSystemToken)
+    * [.getDeviceID()](#MCReactModule.getDeviceID) ⇒ <code>Promise.&lt;?string&gt;</code>
     * [.getAttributes()](#MCReactModule.getAttributes) ⇒ <code>Promise.&lt;Object.&lt;string, string&gt;&gt;</code>
     * [.setAttribute(key, value)](#MCReactModule.setAttribute)
     * [.clearAttribute(key)](#MCReactModule.clearAttribute)
@@ -186,6 +184,36 @@ the device.
 
 - [Android Docs](https://salesforce-marketingcloud.github.io/MarketingCloudSDK-Android/javadocs/6.0/reference/com/salesforce/marketingcloud/messages/push/PushMessageManager.html#getPushToken())
 - [iOS Docs](https://salesforce-marketingcloud.github.io/MarketingCloudSDK-iOS/appledoc/Classes/MarketingCloudSDK.html#//api/name/sfmc_deviceToken)
+
+<a name="MCReactModule.setSystemToken"></a>
+
+### MCReactModule.setSystemToken(systemToken)
+Sets the token used by the Marketing Cloud to send push messages to
+the device.
+
+**Kind**: static method of [<code>MCReactModule</code>](#MCReactModule)  
+**See**
+
+- [Android Docs](https://salesforce-marketingcloud.github.io/MarketingCloudSDK-Android/javadocs/MarketingCloudSdk/6.4/reference/com/salesforce/marketingcloud/messages/push/PushMessageManager.html#setPushToken(java.lang.String))
+- [iOS Docs](https://salesforce-marketingcloud.github.io/MarketingCloudSDK-iOS/appledoc/Classes/MarketingCloudSDK.html#//api/name/sfmc_setDeviceToken:)
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| systemToken | <code>string</code> | The value to be set as the token of     the device's user. |
+
+<a name="MCReactModule.getDeviceID"></a>
+
+### MCReactModule.getDeviceID() ⇒ <code>Promise.&lt;?string&gt;</code>
+Returns the deviceID used by the Marketing Cloud to send push messages to
+the device.
+
+**Kind**: static method of [<code>MCReactModule</code>](#MCReactModule)  
+**Returns**: <code>Promise.&lt;?string&gt;</code> - A promise to the device ID.  
+**See**
+
+- [Android Docs](https://salesforce-marketingcloud.github.io/MarketingCloudSDK-Android/javadocs/6.0/reference/com/salesforce/marketingcloud/registration/RegistrationManager.html#getDeviceId())
+- [iOS Docs](https://salesforce-marketingcloud.github.io/MarketingCloudSDK-iOS/appledoc/Classes/MarketingCloudSDK.html#//api/name/sfmc_deviceIdentifier)
 
 <a name="MCReactModule.getAttributes"></a>
 
@@ -334,7 +362,8 @@ the SDK and will be requested by the Marketing Cloud support team.
 <a name="MCReactModule.track"></a>
 
 ### MCReactModule.track()
-This method helps to track events, which could result in actions such as an InApp Message being displayed.
+This method helps to track events, which could result in actions such as an InApp Message
+being displayed.
 
 **Kind**: static method of [<code>MCReactModule</code>](#MCReactModule)  
 
