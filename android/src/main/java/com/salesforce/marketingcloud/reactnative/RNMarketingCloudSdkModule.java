@@ -96,6 +96,26 @@ public class RNMarketingCloudSdkModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
+    public void setSystemToken(final String token) {
+        handleAction(new Action() {
+            @Override
+            void execute(MarketingCloudSdk sdk) {
+                sdk.getPushMessageManager().setPushToken(token);
+            }
+        });
+    }
+
+    @ReactMethod
+    public void getDeviceID(Promise promise) {
+        handleAction(new PromiseAction(promise) {
+            @Override
+            void execute(MarketingCloudSdk sdk, @NonNull Promise promise) {
+                promise.resolve(sdk.getRegistrationManager().getDeviceId());
+            }
+        });
+    }
+
+    @ReactMethod
     public void getAttributes(Promise promise) {
         handleAction(new PromiseAction(promise) {
             @Override
@@ -207,7 +227,7 @@ public class RNMarketingCloudSdkModule extends ReactContextBaseJavaModule {
             void execute(MarketingCloudSdk sdk) {
                 try {
                     log("~#RNMCSdkModule", "SDK State: " + sdk.getSdkState().toString(2));
-                } catch(Exception e) {
+                } catch (Exception e) {
                     // NO-OP
                 }
             }
@@ -222,7 +242,7 @@ public class RNMarketingCloudSdkModule extends ReactContextBaseJavaModule {
                 try {
                     sdk.getEventManager().track(EventManager.customEvent(name, attributes.toHashMap()));
                     log("~#RNMCSdkModule", name + " Event Tracked.");
-                } catch(Exception e) {
+                } catch (Exception e) {
                     log("~#RNMCSdkModule", "Error Tracking Event: " + e.getMessage());
                 }
             }

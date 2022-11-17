@@ -61,6 +61,22 @@ declare class MCReactModule {
      */
     static getSystemToken(): Promise<string | null>;
     /**
+     * Sets the device tokenfor the device's user.
+     * @param  {string} systemToken - The value to be set as the device token of
+     *     the device.
+     * @see  {@link https://salesforce-marketingcloud.github.io/MarketingCloudSDK-Android/javadocs/MarketingCloudSdk/6.4/reference/com/salesforce/marketingcloud/messages/push/PushMessageManager.html#setPushToken(java.lang.String)|Android Docs}
+     * @see  {@link https://salesforce-marketingcloud.github.io/MarketingCloudSDK-iOS/appledoc/Classes/MarketingCloudSDK.html#//api/name/sfmc_setDeviceToken:|iOS Docs}
+     */
+    static setSystemToken(systemToken: string): void;
+    /**
+     * Returns the deviceID used by the Marketing Cloud to send push messages to
+     * the device.
+     * @returns {Promise<?string>} A promise to the device ID.
+     * @see  {@link https://salesforce-marketingcloud.github.io/MarketingCloudSDK-Android/javadocs/6.0/reference/com/salesforce/marketingcloud/registration/RegistrationManager.html#getDeviceId()|Android Docs}
+     * @see  {@link https://salesforce-marketingcloud.github.io/MarketingCloudSDK-iOS/appledoc/Classes/MarketingCloudSDK.html#//api/name/sfmc_deviceIdentifier|iOS Docs}
+     */
+    static getDeviceID(): Promise<string>;
+    /**
      * Returns the maps of attributes set in the registration.
      * @returns {Promise<Object.<string, string>>} A promise to the key/value map of attributes set
      *     in the registration.

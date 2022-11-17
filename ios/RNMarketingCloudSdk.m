@@ -74,6 +74,29 @@ RCT_EXPORT_METHOD(getSystemToken
     resolve(deviceToken);
 }
 
+RCT_EXPORT_METHOD(setSystemToken : (NSString *_Nonnull)systemToken) {
+    // convert NSString to NSData based on https://stackoverflow.com/a/41555957/939304
+    NSMutableData *systemTokenData = [[NSMutableData alloc] init];
+    unsigned char whole_byte;
+    char byte_chars[3] = {'\0', '\0', '\0'};
+    int i;
+    for (i = 0; i < [systemToken length] / 2; i++) {
+        byte_chars[0] = [systemToken characterAtIndex:i * 2];
+        byte_chars[1] = [systemToken characterAtIndex:i * 2 + 1];
+        whole_byte = strtol(byte_chars, NULL, 16);
+        [systemTokenData appendBytes:&whole_byte length:1];
+    }
+
+    [[MarketingCloudSDK sharedInstance] sfmc_setDeviceToken:systemTokenData];
+}
+
+RCT_EXPORT_METHOD(getDeviceID
+                  : (RCTPromiseResolveBlock)resolve rejecter
+                  : (RCTPromiseRejectBlock)reject) {
+    NSString *deviceID = [[MarketingCloudSDK sharedInstance] sfmc_deviceIdentifier];
+    resolve(deviceID);
+}
+
 RCT_EXPORT_METHOD(setContactKey : (NSString *_Nonnull)contactKey) {
     [[MarketingCloudSDK sharedInstance] sfmc_setContactKey:contactKey];
 }
@@ -128,8 +151,11 @@ RCT_EXPORT_METHOD(logSdkState) {
     [self splitLog:[[MarketingCloudSDK sharedInstance] sfmc_getSDKState]];
 }
 
-RCT_EXPORT_METHOD(track: (NSString* _Nonnull)name withAttributes: (NSDictionary *_Nonnull) attributes) {
-  [[MarketingCloudSDK sharedInstance] sfmc_track:[SFMCEvent customEventWithName:name withAttributes:attributes]];
+RCT_EXPORT_METHOD(track
+                  : (NSString *_Nonnull)name withAttributes
+                  : (NSDictionary *_Nonnull)attributes) {
+    [[MarketingCloudSDK sharedInstance] sfmc_track:[SFMCEvent customEventWithName:name
+                                                                   withAttributes:attributes]];
 }
 
 @end
