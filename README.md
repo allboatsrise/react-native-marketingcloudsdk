@@ -134,6 +134,7 @@ Follow [these instructions](./ios_push.md) to enable push for iOS.
     * [.enableVerboseLogging()](#MCReactModule.enableVerboseLogging)
     * [.disableVerboseLogging()](#MCReactModule.disableVerboseLogging)
     * [.logSdkState()](#MCReactModule.logSdkState)
+    * [.getSdkState()](#MCReactModule.getSdkState)
     * [.track()](#MCReactModule.track)
     * [.refresh()](#MCReactModule.refresh)
 
@@ -360,6 +361,15 @@ Android and Xcode/Console.app for iOS).  This content can help diagnose most iss
 the SDK and will be requested by the Marketing Cloud support team.
 
 **Kind**: static method of [<code>MCReactModule</code>](#MCReactModule)  
+<a name="MCReactModule.getSdkState"></a>
+
+### MCReactModule.getSdkState()
+Outputs a formatted, easily readable block of text describing the current status of the SDK.
+This content can help diagnose most issues within the SDK and will be requested by
+the Marketing Cloud support team.
+
+**Kind**: static method of [<code>MCReactModule</code>](#MCReactModule)  
+**Platform**: ios  
 <a name="MCReactModule.track"></a>
 
 ### MCReactModule.track()

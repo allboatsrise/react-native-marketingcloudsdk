@@ -151,6 +151,13 @@ RCT_EXPORT_METHOD(logSdkState) {
     [self splitLog:[[MobilePushSDK sharedInstance] sfmc_getSDKState]];
 }
 
+RCT_EXPORT_METHOD(getSdkState
+                  : (RCTPromiseResolveBlock)resolve rejecter
+                  : (RCTPromiseRejectBlock)reject) {
+    NSString *state = [[MobilePushSDK sharedInstance] sfmc_getSDKState];
+    resolve(state);
+}
+
 RCT_EXPORT_METHOD(track
                   : (NSString *_Nonnull)name withAttributes
                   : (NSDictionary *_Nonnull)attributes) {

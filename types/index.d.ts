@@ -159,6 +159,13 @@ declare class MCReactModule {
      */
     static logSdkState(): void;
     /**
+     * Outputs a formatted, easily readable block of text describing the current status of the SDK.
+     * This content can help diagnose most issues within the SDK and will be requested by
+     * the Marketing Cloud support team.
+     * @platform ios
+     */
+    static getSdkState(): Promise<string>;
+    /**
      * This method helps to track events, which could result in actions such as an InApp Message being displayed.
      */
     static track(name: any, attributes: any): void;
