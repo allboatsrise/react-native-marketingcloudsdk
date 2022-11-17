@@ -59,18 +59,18 @@ RCT_EXPORT_MODULE()
 RCT_EXPORT_METHOD(isPushEnabled
                   : (RCTPromiseResolveBlock)resolve rejecter
                   : (RCTPromiseRejectBlock)reject) {
-    BOOL status = [[MarketingCloudSDK sharedInstance] sfmc_pushEnabled];
+    BOOL status = [[MobilePushSDK sharedInstance] sfmc_pushEnabled];
     resolve(@(status));
 }
 
-RCT_EXPORT_METHOD(enablePush) { [[MarketingCloudSDK sharedInstance] sfmc_setPushEnabled:YES]; }
+RCT_EXPORT_METHOD(enablePush) { [[MobilePushSDK sharedInstance] sfmc_setPushEnabled:YES]; }
 
-RCT_EXPORT_METHOD(disablePush) { [[MarketingCloudSDK sharedInstance] sfmc_setPushEnabled:NO]; }
+RCT_EXPORT_METHOD(disablePush) { [[MobilePushSDK sharedInstance] sfmc_setPushEnabled:NO]; }
 
 RCT_EXPORT_METHOD(getSystemToken
                   : (RCTPromiseResolveBlock)resolve rejecter
                   : (RCTPromiseRejectBlock)reject) {
-    NSString *deviceToken = [[MarketingCloudSDK sharedInstance] sfmc_deviceToken];
+    NSString *deviceToken = [[MobilePushSDK sharedInstance] sfmc_deviceToken];
     resolve(deviceToken);
 }
 
@@ -87,75 +87,75 @@ RCT_EXPORT_METHOD(setSystemToken : (NSString *_Nonnull)systemToken) {
         [systemTokenData appendBytes:&whole_byte length:1];
     }
 
-    [[MarketingCloudSDK sharedInstance] sfmc_setDeviceToken:systemTokenData];
+    [[MobilePushSDK sharedInstance] sfmc_setDeviceToken:systemTokenData];
 }
 
 RCT_EXPORT_METHOD(getDeviceID
                   : (RCTPromiseResolveBlock)resolve rejecter
                   : (RCTPromiseRejectBlock)reject) {
-    NSString *deviceID = [[MarketingCloudSDK sharedInstance] sfmc_deviceIdentifier];
+    NSString *deviceID = [[MobilePushSDK sharedInstance] sfmc_deviceIdentifier];
     resolve(deviceID);
 }
 
 RCT_EXPORT_METHOD(setContactKey : (NSString *_Nonnull)contactKey) {
-    [[MarketingCloudSDK sharedInstance] sfmc_setContactKey:contactKey];
+    [[SFMCSdk identity] setProfileId:contactKey];
 }
 
 RCT_EXPORT_METHOD(getContactKey
                   : (RCTPromiseResolveBlock)resolve rejecter
                   : (RCTPromiseRejectBlock)reject) {
-    NSString *contactKey = [[MarketingCloudSDK sharedInstance] sfmc_contactKey];
+    NSString *contactKey = [[MobilePushSDK sharedInstance] sfmc_contactKey];
     resolve(contactKey);
 }
 
 RCT_EXPORT_METHOD(addTag : (NSString *_Nonnull)tag) {
-    [[MarketingCloudSDK sharedInstance] sfmc_addTag:tag];
+    [[MobilePushSDK sharedInstance] sfmc_addTag:tag];
 }
 
 RCT_EXPORT_METHOD(removeTag : (NSString *_Nonnull)tag) {
-    [[MarketingCloudSDK sharedInstance] sfmc_removeTag:tag];
+    [[MobilePushSDK sharedInstance] sfmc_removeTag:tag];
 }
 
 RCT_EXPORT_METHOD(getTags
                   : (RCTPromiseResolveBlock)resolve rejecter
                   : (RCTPromiseRejectBlock)reject) {
-    NSSet *tags = [[MarketingCloudSDK sharedInstance] sfmc_tags];
+    NSSet *tags = [[MobilePushSDK sharedInstance] sfmc_tags];
     NSArray *arr = [tags allObjects];
     resolve(arr);
 }
 
 RCT_EXPORT_METHOD(setAttribute : (NSString *_Nonnull)name value : (NSString *_Nonnull)value) {
-    [[MarketingCloudSDK sharedInstance] sfmc_setAttributeNamed:name value:value];
+    [[SFMCSdk identity] setProfileAttributes:@{name : value}];
 }
 
 RCT_EXPORT_METHOD(clearAttribute : (NSString *_Nonnull)name) {
-    [[MarketingCloudSDK sharedInstance] sfmc_clearAttributeNamed:name];
+    [[MobilePushSDK sharedInstance] sfmc_clearAttributeNamed:name];
 }
 
 RCT_EXPORT_METHOD(getAttributes
                   : (RCTPromiseResolveBlock)resolve rejecter
                   : (RCTPromiseRejectBlock)reject) {
-    NSDictionary *attributes = [[MarketingCloudSDK sharedInstance] sfmc_attributes];
+    NSDictionary *attributes = [[MobilePushSDK sharedInstance] sfmc_attributes];
     resolve((attributes != nil) ? attributes : @[]);
 }
 
 RCT_EXPORT_METHOD(enableVerboseLogging) {
-    [[MarketingCloudSDK sharedInstance] sfmc_setDebugLoggingEnabled:YES];
+    [[MobilePushSDK sharedInstance] sfmc_setDebugLoggingEnabled:YES];
 }
 
 RCT_EXPORT_METHOD(disableVerboseLogging) {
-    [[MarketingCloudSDK sharedInstance] sfmc_setDebugLoggingEnabled:NO];
+    [[MobilePushSDK sharedInstance] sfmc_setDebugLoggingEnabled:NO];
 }
 
 RCT_EXPORT_METHOD(logSdkState) {
-    [self splitLog:[[MarketingCloudSDK sharedInstance] sfmc_getSDKState]];
+    [self splitLog:[[MobilePushSDK sharedInstance] sfmc_getSDKState]];
 }
 
 RCT_EXPORT_METHOD(track
                   : (NSString *_Nonnull)name withAttributes
                   : (NSDictionary *_Nonnull)attributes) {
-    [[MarketingCloudSDK sharedInstance] sfmc_track:[SFMCEvent customEventWithName:name
-                                                                   withAttributes:attributes]];
+    [[MobilePushSDK sharedInstance] sfmc_track:[SFMCEvent customEventWithName:name
+                                                               withAttributes:attributes]];
 }
 
 @end
