@@ -158,4 +158,28 @@ RCT_EXPORT_METHOD(track
                                                                withAttributes:attributes]];
 }
 
+RCT_EXPORT_METHOD(refresh
+                  : (RCTPromiseResolveBlock)resolve rejecter
+                  : (RCTPromiseRejectBlock)reject) {
+    [[MobilePushSDK sharedInstance]
+        sfmc_refreshWithFetchCompletionHandler:^(UIBackgroundFetchResult result) {
+          switch (result) {
+              case UIBackgroundFetchResultNoData:
+                  resolve(@"throttled");
+                  break;
+
+              case UIBackgroundFetchResultNewData:
+                  resolve(@"updated");
+                  break;
+
+              case UIBackgroundFetchResultFailed:
+                  resolve(@"failed");
+                  break;
+
+              default:
+                  resolve(@"unknown");
+          }
+        }];
+}
+
 @end

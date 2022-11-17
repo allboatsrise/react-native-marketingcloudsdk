@@ -162,4 +162,10 @@ declare class MCReactModule {
      * This method helps to track events, which could result in actions such as an InApp Message being displayed.
      */
     static track(name: any, attributes: any): void;
+    /**
+     * Ask MarketingCloudSDK to update its data. MarketingCloudSDK will throttle attempts based on
+     * the time since the last time this was called.
+     * @platform ios
+     */
+    static refresh(): Promise<'throttled' | 'updated' | 'failed' | 'unknown'>;
 }
