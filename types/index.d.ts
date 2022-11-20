@@ -110,14 +110,14 @@ declare class MCReactModule {
      * @see  {@link https://salesforce-marketingcloud.github.io/MarketingCloudSDK-Android/javadocs/6.0/reference/com/salesforce/marketingcloud/registration/RegistrationManager.Editor.html#addTag(java.lang.String)|Android Docs}
      * @see  {@link https://salesforce-marketingcloud.github.io/MarketingCloudSDK-iOS/appledoc/Classes/MarketingCloudSDK.html#//api/name/sfmc_addTag:|iOS Docs}
      */
-    static addTag(tag: string): void;
+    static addTag(tag: string): Promise<boolean>;
     /**
      * @param  {string} tag - The tag to be removed from the list of tags in the
      *     registration.
      * @see  {@link https://salesforce-marketingcloud.github.io/MarketingCloudSDK-Android/javadocs/6.0/reference/com/salesforce/marketingcloud/registration/RegistrationManager.Editor.html#removeTag(java.lang.String)|Android Docs}
      * @see  {@link https://salesforce-marketingcloud.github.io/MarketingCloudSDK-iOS/appledoc/Classes/MarketingCloudSDK.html#//api/name/sfmc_removeTag:|iOS Docs}
      */
-    static removeTag(tag: string): void;
+    static removeTag(tag: string): Promise<boolean>;
     /**
      * Returns the tags currently set on the device.
      * @returns  {Promise<string[]>} A promise to the array of tags currently set in the native SDK.
@@ -150,6 +150,7 @@ declare class MCReactModule {
      * Disables verbose logging within the native Marketing Cloud SDK.
      * @see  {@link https://salesforce-marketingcloud.github.io/MarketingCloudSDK-Android/javadocs/6.0/reference/com/salesforce/marketingcloud/MarketingCloudSdk.html#setLogLevel(int)|Android Docs}
      * @see  {@link https://salesforce-marketingcloud.github.io/MarketingCloudSDK-iOS/appledoc/Classes/MarketingCloudSDK.html#//api/name/sfmc_setDebugLoggingEnabled:|iOS Docs}
+     * @platform android
      */
     static disableVerboseLogging(): void;
     /**

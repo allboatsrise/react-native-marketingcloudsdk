@@ -134,9 +134,9 @@ Follow [these instructions](./ios_push.md) to enable push for iOS.
     * [.enableVerboseLogging()](#MCReactModule.enableVerboseLogging)
     * [.disableVerboseLogging()](#MCReactModule.disableVerboseLogging)
     * [.logSdkState()](#MCReactModule.logSdkState)
-    * [.getSdkState()](#MCReactModule.getSdkState)
+    * [.getSdkState()](#MCReactModule.getSdkState) ⇒ <code>Promise.&lt;string&gt;</code>
     * [.track()](#MCReactModule.track)
-    * [.refresh()](#MCReactModule.refresh)
+    * [.refresh()](#MCReactModule.refresh) ⇒ <code>Promise.&lt;(&#x27;throttled&#x27;\|&#x27;updated&#x27;\|&#x27;failed&#x27;\|&#x27;unknown&#x27;)&gt;</code>
 
 <a name="MCReactModule.isPushEnabled"></a>
 
@@ -348,6 +348,7 @@ Enables verbose logging within the native Marketing Cloud SDK.
 Disables verbose logging within the native Marketing Cloud SDK.
 
 **Kind**: static method of [<code>MCReactModule</code>](#MCReactModule)  
+**Platform**: android  
 **See**
 
 - [Android Docs](https://salesforce-marketingcloud.github.io/MarketingCloudSDK-Android/javadocs/6.0/reference/com/salesforce/marketingcloud/MarketingCloudSdk.html#setLogLevel(int))
@@ -363,7 +364,7 @@ the SDK and will be requested by the Marketing Cloud support team.
 **Kind**: static method of [<code>MCReactModule</code>](#MCReactModule)  
 <a name="MCReactModule.getSdkState"></a>
 
-### MCReactModule.getSdkState()
+### MCReactModule.getSdkState() ⇒ <code>Promise.&lt;string&gt;</code>
 Outputs a formatted, easily readable block of text describing the current status of the SDK.
 This content can help diagnose most issues within the SDK and will be requested by
 the Marketing Cloud support team.
@@ -379,7 +380,7 @@ being displayed.
 **Kind**: static method of [<code>MCReactModule</code>](#MCReactModule)  
 <a name="MCReactModule.refresh"></a>
 
-### MCReactModule.refresh()
+### MCReactModule.refresh() ⇒ <code>Promise.&lt;(&#x27;throttled&#x27;\|&#x27;updated&#x27;\|&#x27;failed&#x27;\|&#x27;unknown&#x27;)&gt;</code>
 Ask MarketingCloudSDK to update its data. MarketingCloudSDK will throttle attempts based on
 the time since the last time this was called.
 
