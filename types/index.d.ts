@@ -140,7 +140,7 @@ declare class MCReactModule {
      * @see  {@link https://salesforce-marketingcloud.github.io/MarketingCloudSDK-iOS/appledoc/Classes/MarketingCloudSDK.html#//api/name/sfmc_contactKey|iOS Docs}
      */
     static getContactKey(): Promise<string | null>;
-    static addLogListener(listener: (data: {level: number, subsystem: string, category: number, message: string}) => void): {remove: () => void}
+    static addLogListener(listener: (data: {level: number, subsystem: string, category: string, message: string}) => void): {remove: () => void}
     /**
      * Enables verbose logging within the native Marketing Cloud SDK.
      * @see  {@link https://salesforce-marketingcloud.github.io/MarketingCloudSDK-Android/javadocs/6.0/reference/com/salesforce/marketingcloud/MarketingCloudSdk.html#setLogLevel(int)|Android Docs}
