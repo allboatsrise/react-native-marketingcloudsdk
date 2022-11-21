@@ -67,7 +67,7 @@ declare class MCReactModule {
      * @see  {@link https://salesforce-marketingcloud.github.io/MarketingCloudSDK-Android/javadocs/MarketingCloudSdk/6.4/reference/com/salesforce/marketingcloud/messages/push/PushMessageManager.html#setPushToken(java.lang.String)|Android Docs}
      * @see  {@link https://salesforce-marketingcloud.github.io/MarketingCloudSDK-iOS/appledoc/Classes/MarketingCloudSDK.html#//api/name/sfmc_setDeviceToken:|iOS Docs}
      */
-    static setSystemToken(systemToken: string): void;
+    static setSystemToken(systemToken: string): Promise<true>;
     /**
      * Returns the deviceID used by the Marketing Cloud to send push messages to
      * the device.

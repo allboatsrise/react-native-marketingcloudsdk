@@ -42,7 +42,9 @@ RCT_EXTERN_METHOD(getSystemToken
                   : (RCTPromiseResolveBlock)resolve rejecter
                   : (RCTPromiseRejectBlock)reject)
 
-RCT_EXTERN_METHOD(setSystemToken : (NSString *_Nonnull)systemToken)
+RCT_EXTERN_METHOD(setSystemToken:(NSString *_Nonnull)systemToken
+                  resolver:(RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject)
 
 RCT_EXTERN_METHOD(getDeviceID
                   : (RCTPromiseResolveBlock)resolve rejecter
@@ -56,12 +58,12 @@ RCT_EXTERN_METHOD(getContactKey
 
 RCT_EXTERN_METHOD(addTag
                   : (NSString *_Nonnull)tag
-                  : (RCTPromiseResolveBlock)resolve rejecter
+                  resolver: (RCTPromiseResolveBlock)resolve rejecter
                   : (RCTPromiseRejectBlock)reject)
 
 RCT_EXTERN_METHOD(removeTag
                   : (NSString *_Nonnull)tag
-                  : (RCTPromiseResolveBlock)resolve rejecter
+                  resolver: (RCTPromiseResolveBlock)resolve rejecter
                   : (RCTPromiseRejectBlock)reject)
 
 RCT_EXTERN_METHOD(getTags

@@ -63,7 +63,7 @@ class RNMarketingCloudSdk: RCTEventEmitter, RNMarketingCloudSdkLoggerDelegate {
   
   @objc
   func isPushEnabled(_ resolve: RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock) -> Void {
-    resolve(SFMCSdk.mp.pushEnabled)
+    resolve(SFMCSdk.mp.pushEnabled())
   }
   
   @objc
@@ -79,19 +79,27 @@ class RNMarketingCloudSdk: RCTEventEmitter, RNMarketingCloudSdkLoggerDelegate {
   @objc
   func getSystemToken(_ resolve: RCTPromiseResolveBlock, rejecter
                       reject: RCTPromiseRejectBlock) {
-    resolve(SFMCSdk.mp.deviceToken)
+    resolve(SFMCSdk.mp.deviceToken())
   }
   
   @objc
-  func setSystemToken(_ systemToken: String) {
-    SFMCSdk.mp.setDeviceToken(systemToken.data(using: .utf8)!)
+  func setSystemToken(_ systemToken: String, resolver resolve
+                      : RCTPromiseResolveBlock, rejecter reject
+                      : RCTPromiseRejectBlock) {
+    do {
+      let token = try RNMarketingCloudSdkDeviceToken.init(hexString: systemToken)
+      SFMCSdk.mp.setDeviceToken(token.data)
+      resolve(true)
+    } catch {
+      return reject("invalid-hex-token", "Failed to convert token to data type", nil)
+    }
   }
   
   @objc
   func getDeviceID( _ resolve
                     : RCTPromiseResolveBlock, rejecter reject
                     : RCTPromiseRejectBlock) {
-    resolve(SFMCSdk.mp.deviceIdentifier)
+    resolve(SFMCSdk.mp.deviceIdentifier())
   }
   
   @objc
@@ -103,7 +111,7 @@ class RNMarketingCloudSdk: RCTEventEmitter, RNMarketingCloudSdkLoggerDelegate {
   func getContactKey(_ resolve
                      : RCTPromiseResolveBlock, rejecter reject
                      : RCTPromiseRejectBlock) {
-    resolve(SFMCSdk.mp.contactKey)
+    resolve(SFMCSdk.mp.contactKey())
   }
   
   @objc
@@ -124,7 +132,7 @@ class RNMarketingCloudSdk: RCTEventEmitter, RNMarketingCloudSdkLoggerDelegate {
   func getTags(_ resolve
                : RCTPromiseResolveBlock, rejecter reject
                : RCTPromiseRejectBlock) {
-    resolve(Array(arrayLiteral: SFMCSdk.mp.tags))
+    resolve(Array(arrayLiteral: SFMCSdk.mp.tags()))
   }
   
   @objc
@@ -141,7 +149,7 @@ class RNMarketingCloudSdk: RCTEventEmitter, RNMarketingCloudSdkLoggerDelegate {
   func getAttributes(_ resolve
                      : RCTPromiseResolveBlock, rejecter reject
                      : RCTPromiseRejectBlock) {
-    resolve(SFMCSdk.mp.attributes)
+    resolve(SFMCSdk.mp.attributes())
   }
   
   @objc
